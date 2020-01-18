@@ -31,6 +31,7 @@ exports.addEncuesta = function(req, res) {
 		autor:  		req.body.autor,
 		creationDate: 	req.body.creationDate,
 		votosTotales:   req.body.votosTotales,
+		votosUsers: 	req.body.votosUsers,
 		fields: 		req.body.fields
 	});
 
@@ -57,6 +58,7 @@ exports.updateEncuesta = function(req, res) {
 		if(err) return res.send(500, err.message);
 		console.log('survey a actualizar', survey);
 		survey.votosTotales = req.body.votosTotales;
+		survey.votosUsers = req.body.votosUsers;
 		survey.fields = req.body.fields;
 		console.log('survey con votos: ', survey);
 		survey.save(function(err, surveySaved) {
