@@ -9,6 +9,7 @@ exports = module.exports = function(app, mongoose) {
 		config: 	{ type: Array },
 		fields: 	{ type: Array },
 		votosTotales: 	{ type: Number },
+		votosUsers: { type: Array }
 	});
 
 	mongoose.model('Survey', encuestaSchema);
