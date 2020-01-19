@@ -25,7 +25,7 @@ var EncuestaCtrl = require('./controllers/encuesta');
 
 // Example Route
 var router = express.Router();
-router.get('/', function(req, res) {
+router.get('/api/surveymaker', function(req, res) {
   res.send("Server works!");
 });
 app.use(router);
@@ -45,7 +45,7 @@ encuestas.route('/encuestas/:id')
 encuestas.route('/usuario/encuestas/:email')
   .get(EncuestaCtrl.findByEmail);
 
-app.use('/api', encuestas);
+app.use('/api/surveymaker', encuestas);
 
 // Start server
 app.listen(3000, function() {

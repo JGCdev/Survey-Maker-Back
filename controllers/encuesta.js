@@ -45,7 +45,7 @@ exports.addEncuesta = function(req, res) {
 //GET 
 exports.findAllEncuestas = function(req, res) {
 	console.log('entra');
-	Encuesta.find(function(err, encuestas) {
+	Survey.find(function(err, encuestas) {
     if(err) res.send(500, err.message);
 		res.status(200).jsonp(encuestas);
 	});
