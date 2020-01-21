@@ -1,9 +1,7 @@
 var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
-    methodOverride  = require("method-override"),
-    mongoose        = require('mongoose'),
-    cors            = require('cors');
+    mongoose        = require('mongoose');
 
 // Connection to DB
 mongoose.connect("mongodb://localhost:27017/surveys",{ useUnifiedTopology: true, useNewUrlParser: true}).then( () => {
@@ -15,9 +13,6 @@ mongoose.connect("mongodb://localhost:27017/surveys",{ useUnifiedTopology: true,
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(methodOverride());
-
-app.use(cors())
 
 // Import Models and controllers
 var models     = require('./models/encuesta')(app, mongoose);
@@ -25,8 +20,8 @@ var EncuestaCtrl = require('./controllers/encuesta');
 
 // Example Route
 var router = express.Router();
-router.get('/api/surveymaker', function(req, res) {
-  res.send("Server works!");
+router.get('/api/surveymaker/', function(req, res) {
+  res.send("<h2>JGdev API Work!</h2>");
 });
 app.use(router);
 
@@ -45,9 +40,9 @@ encuestas.route('/encuestas/:id')
 encuestas.route('/usuario/encuestas/:email')
   .get(EncuestaCtrl.findByEmail);
 
-app.use('/api/surveymaker', encuestas);
+app.use('/api/surveymaker/', encuestas);
 
 // Start server
-app.listen(3000, function() {
-  console.log("Node server running on http://localhost:3000");
+app.listen(3001, function() {
+  console.log("Node server running on http://localhost:3001");
 });
