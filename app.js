@@ -21,7 +21,7 @@ var EncuestaCtrl = require('./controllers/encuesta');
 // Example Route
 var router = express.Router();
 router.get('/api/surveymaker/', function(req, res) {
-  res.send("<h2>JGdev API Work!</h2>");
+  res.send("<h2>Surveymaker API Works!</h2>");
 });
 app.use(router);
 
