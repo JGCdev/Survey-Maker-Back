@@ -1,7 +1,10 @@
 var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
+    cors            = require("cors");
     mongoose        = require('mongoose');
+
+const environment = process.env.NODE_ENV || 'development';
 
 // Connection to DB
 mongoose.connect("mongodb://localhost:27017/surveys",{ useUnifiedTopology: true, useNewUrlParser: true}).then( () => {
@@ -13,6 +16,10 @@ mongoose.connect("mongodb://localhost:27017/surveys",{ useUnifiedTopology: true,
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+if (environment === 'development') {
+  app.use(cors());
+}
 
 // Import Models and controllers
 var models     = require('./models/encuesta')(app, mongoose);

@@ -7,5 +7,9 @@
     "express": "^4.7.1",
     "method-override": "^2.1.2",
     "mongoose": "~5.8.4"
+  },
+  "scripts": {    
+    "local": "SET NODE_ENV=development&&node app.js",
+    "prod": "SET NODE_ENV=production&&node app.js"
   }
 }
