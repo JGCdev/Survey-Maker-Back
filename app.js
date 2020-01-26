@@ -4,7 +4,7 @@ var express         = require("express"),
     cors            = require("cors");
     mongoose        = require('mongoose');
 
-const environment = process.env.NODE_ENV || 'development';
+const environment = process.env.NODE_ENV || 'production';
 
 // Connection to DB
 mongoose.connect("mongodb://localhost:27017/surveys",{ useUnifiedTopology: true, useNewUrlParser: true}).then( () => {
