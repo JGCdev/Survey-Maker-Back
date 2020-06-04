@@ -1,7 +1,10 @@
 var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
+    cors            = require("cors");
     mongoose        = require('mongoose');
+
+const environment = process.env.NODE_ENV || 'production';
 
 // Connection to DB
 mongoose.connect("mongodb://localhost:27017/surveys",{ useUnifiedTopology: true, useNewUrlParser: true}).then( () => {
@@ -14,6 +17,10 @@ mongoose.connect("mongodb://localhost:27017/surveys",{ useUnifiedTopology: true,
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+if (environment === 'development') {
+  app.use(cors());
+}
+
 // Import Models and controllers
 var models     = require('./models/encuesta')(app, mongoose);
 var EncuestaCtrl = require('./controllers/encuesta');
@@ -21,7 +28,7 @@ var EncuestaCtrl = require('./controllers/encuesta');
 // Example Route
 var router = express.Router();
 router.get('/api/surveymaker/', function(req, res) {
-  res.send("<h2>JGdev API Work!</h2>");
+  res.send("<h2>Surveymaker API Works!</h2>");
 });
 app.use(router);
 
